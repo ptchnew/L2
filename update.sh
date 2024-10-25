@@ -1,7 +1,6 @@
 #!/bin/bash
 clear
-wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/ptchnew/L2/main/menu/menu.sh" && chmod +x /usr/bin/menu
-wget -q -O /usr/bin/update "https://raw.githubusercontent.com/ptchnew/L2/main/update.sh" && chmod +x /usr/bin/update
+wget -q -O /usr/bin/menu "https://raw.githubusercontent.com/ptchnew/L2/main/menu/menu.sh" && chmod +x /usr/bin/menu && dos2unix /usr/bin/menu 
 wget -q -O /usr/bin/addssh "https://raw.githubusercontent.com/ptchnew/L2/main/menu/addssh.sh" && chmod +x /usr/bin/addssh
 wget -q -O /usr/bin/cek-ssh "https://raw.githubusercontent.com/ptchnew/L2/main/menu/cek-ssh.sh" && chmod +x /usr/bin/cek-ssh
 wget -q -O /usr/bin/delssh "https://raw.githubusercontent.com/ptchnew/L2/main/menu/delssh.sh" && chmod +x /usr/bin/delssh
@@ -13,5 +12,8 @@ wget -q -O /usr/bin/speedtest "https://raw.githubusercontent.com/ptchnew/L2/main
 wget -q -O /usr/bin/tendang "https://raw.githubusercontent.com/ptchnew/L2/main/menu/tendang.sh" && chmod +x /usr/bin/tendang
 wget -q -O /usr/bin/bantwidth "https://raw.githubusercontent.com/ptchnew/L2/main/install/bantwidth" && chmod +x /usr/bin/bantwidth
 wget -q -O /usr/bin/xp "https://raw.githubusercontent.com/ptchnew/L2/main/install/xp.sh" && chmod +x /usr/bin/xp
+
+
+
 sleep 1
 exit
