@@ -30,6 +30,7 @@ done
 echo "$subdomen" > /root/scdomain >/dev/null 2>&1
 clear
 }
+
 function ins-tools(){
 cd
 sysctl -w net.ipv6.conf.all.disable_ipv6=1 >/dev/null 2>&1
@@ -119,6 +120,7 @@ echo -e "${BIBlue}╰═══════════════════�
 fun_bar 'res6'
 }
 
+domain
 ins-tools
 ins-package
 
