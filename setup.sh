@@ -4,7 +4,7 @@ red='\e[1;31m'
 green='\e[0;32m'
 yell='\e[1;33m'
 BIBlue='\033[1;95m'
-BGCOLOR='\e[1;96;101m'
+BGCOLOR='\E[0;100;36m'
 tyblue='\e[1;36m'
 NC='\e[0m'
 cyann() { echo -e "\\033[36;1m${*}\\033[0m"; }
@@ -48,7 +48,7 @@ fun_bar() {
         touch $HOME/fim
     ) >/dev/null 2>&1 &
     tput civis
-    echo -ne "  \033[0;35mInstalling Files.. \033[1;37m- \033[0;33m["
+    echo -ne "  \033[0;36mInstalling Files.. \033[1;37m- \033[0;33m["
     while true; do
         for ((i = 0; i < 18; i++)); do
             echo -ne "\033[0;32m#"
@@ -59,7 +59,7 @@ fun_bar() {
         sleep 1s
         tput cuu1
         tput dl1
-        echo -ne "  \033[0;35mInstalling Files.. \033[1;37m- \033[0;33m["
+        echo -ne "  \033[0;36mInstalling Files.. \033[1;37m- \033[0;33m["
     done
     echo -e "\033[0;33m]\033[1;37m -\033[1;32m Succes !\033[1;37m"
     tput cnorm
@@ -67,7 +67,7 @@ fun_bar() {
 
 
 res3() {
-wget https://raw.githubusercontent.com/ptchnew/L2/main/install/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
+wget https://raw.githubusercontent.com/ptchnew/L2/main/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
 clear
 wget https://raw.githubusercontent.com/ptchnew/L2/main/install/insshws.sh && chmod +x insshws.sh && ./insshws.sh
 clear
@@ -126,23 +126,8 @@ END
 
 chmod 644 /root/.profile
 
-if [ ! -f "/etc/log-create-user.log" ]; then
-echo "Log All Account " > /etc/log-create-user.log
-fi
-history -c
-aureb=$(cat /home/re_otm)
-b=11
-if [ $aureb -gt $b ]
-then
-gg="PM"
-else
-gg="AM"
-fi
-
 cd
 curl -sS ifconfig.me > /etc/myipvps
-curl -s ipinfo.io/city?token=75082b4831f909 >> /etc/xray/city
-curl -s ipinfo.io/org?token=75082b4831f909  | cut -d " " -f 2-10 >> /etc/xray/isp
 rm /root/setup.sh >/dev/null 2>&1
 rm /root/ssh-vpn.sh >/dev/null 2>&1
 rm /root/insshws.sh >/dev/null 2>&1
