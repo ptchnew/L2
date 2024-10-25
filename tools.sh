@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
-echo "  Tools install...!"
-echo "        Progress..."
+echo " Tools install...!"
+echo "   Progress..."
 sleep 1
 apt update -y
 apt upgrade -y
@@ -42,7 +42,7 @@ systemctl enable vnstat
 rm -f /root/vnstat-2.6.tar.gz
 rm -rf /root/vnstat-2.6
 
-cyann() { echo -e "\\033[36;1m${*}\\033[0m"; }
+cyann() { echo -e "\\033[36;0m${*}\\033[0m"; }
 cyann "Dependencies successfully installed..."
 sleep 1
 clear
