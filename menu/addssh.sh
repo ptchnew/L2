@@ -12,9 +12,6 @@ export URL="https://api.telegram.org/bot$KEY/sendMessage"
 IP=$(curl -sS ipv4.icanhazip.com)
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
-if [ ! -e /etc/xray/ssh ]; then
-mkdir -p /etc/xray/ssh
-fi
 clear
 echo -e "${W}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}" 
 echo -e "${CYB}${WB}       Add SSH Account        ${NC}"

@@ -17,6 +17,12 @@ cpu_load=$(uptime | awk -F'load average:' '{print $2}' | cut -d, -f1)
 cpu_load_percent=$(echo "scale=2; $cpu_load * 100 / $(nproc)" | bc)
 cd
 
+if [ -d /etc/xray/ssh ]; then
+    rm -r /etc/xray/ssh
+    echo "" > /etc/xray/ssh
+elif [ ! -e /etc/xray/ssh ]; then
+    echo "" > /etc/xray/ssh
+fi
 if [ ! -e /etc/xray/ssh ]; then
 echo "" > /etc/xray/ssh
 elif [ ! -e /etc/xray/sshx ]; then
@@ -168,28 +174,28 @@ echo -e "${G}┌─────────────────────�
 echo -e "${G}│$NC$NC${BG}               PAINSHOPVPN TUNNEL                $NC${G}│$NC"
 echo -e "${G}└─────────────────────────────────────────────────┘${NC}"
 echo -e "${G}┌─────────────────────────────────────────────────${NC} "
-echo -e "${G}│${NC} ${Left} IP VPS             ${GREEN}⋍${NC} ${R}${IP}${NC}"
-echo -e "${G}│${NC} ${Left} CPU Load           ${GREEN}⋍${NC} ${R}$cpu_load_percent%${NC}"
-echo -e "${G}│${NC} ${Left} ISP Provider       ${GREEN}⋍${NC} ${R}${ISP}${NC}"
-echo -e "${G}│${NC} ${Left} CITY Location      ${GREEN}⋍${NC} ${R}${CITY}${NC}"
-echo -e "${G}│${NC} ${Left} Account Created    ${GREEN}⋍${NC} ${R}${total_ssh}${NC} Account${NC}"
+echo -e "${G}│${NC} ${Left} IP VPS           ${GREEN}⋍${NC} ${R}${IP}${NC}"
+echo -e "${G}│${NC} ${Left} CPU Load         ${GREEN}⋍${NC} ${R}$cpu_load_percent%${NC}"
+echo -e "${G}│${NC} ${Left} ISP Provider     ${GREEN}⋍${NC} ${R}${ISP}${NC}"
+echo -e "${G}│${NC} ${Left} CITY Location    ${GREEN}⋍${NC} ${R}${CITY}${NC}"
+echo -e "${G}│${NC} ${Left} Account Created  ${GREEN}⋍${NC} ${R}${total_ssh}${NC} Account${NC}"
 echo -e "${G}└─────────────────────────────────────────────────${NC} "
 echo -e "${G}┌─────────────────────────────────────────────────${NC} "
 echo -e "${G}│${M}    NGINX  ${N} ${status_nginx}  ${N}|${M}  SSHWS  ${N} ${status_ws} ${N}|${M}    DROPBEAR  ${N} ${status_beruangjatuh} ${NC} "
 echo -e "${G}└─────────────────────────────────────────────────${NC} "
 echo -e "${G}┌─────────────────────────────────────────────────${NC}"
-echo -e "${G}│  ${C}01.]${NC} Create SSH Account   ${G}(menu)${NC}"
-echo -e "${G}│  ${C}02.]${NC} Renew  SSH Account   ${G}(menu)${NC}"
-echo -e "${G}│  ${C}03.]${NC} Delete SSH Account   ${G}(menu)${NC}"
-echo -e "${G}│  ${C}04.]${NC} Online SSH Account   ${G}(menu)${NC}"
-echo -e "${G}│  ${C}05.]${NC} Limit  SSH Account   ${G}(menu)${NC}"
-echo -e "${G}│  ${C}06.]${NC} Unlock SSH Account   ${G}(menu)${NC}"
-echo -e "${G}│  ${C}07.]${NC} Settings Lock SSH    ${G}(menu)${NC}"
+echo -e "${G}│  ${C}01.]${NC} Create SSH Account                  ${G}(menu)${NC}"
+echo -e "${G}│  ${C}02.]${NC} Renew  SSH Account                  ${G}(menu)${NC}"
+echo -e "${G}│  ${C}03.]${NC} Delete SSH Account                  ${G}(menu)${NC}"
+echo -e "${G}│  ${C}04.]${NC} Online SSH Account                  ${G}(menu)${NC}"
+echo -e "${G}│  ${C}05.]${NC} Limit  SSH Account                  ${G}(menu)${NC}"
+echo -e "${G}│  ${C}06.]${NC} Unlock SSH Account                  ${G}(menu)${NC}"
+echo -e "${G}│  ${C}07.]${NC} Settings Lock SSH                   ${G}(menu)${NC}"
 echo -e "${G}└─────────────────────────────────────────────────${NC}"
 echo -e "${G}┌─────────────────────────────────────────────────${NC}"
-echo -e "${G}│  ${C}08.]${NC} Restart Service SSH  ${G}(menu)${NC}"
-echo -e "${G}│  ${C}09.]${NC} Notifikasi Bot Tele  ${G}(menu)${NC}"
-echo -e "${G}│  ${C}10.]${NC} Reboot System        ${G}(menu)${NC}"
+echo -e "${G}│  ${C}08.]${NC} Restart Service SSH                 ${G}(menu)${NC}"
+echo -e "${G}│  ${C}09.]${NC} Notifikasi Bot Tele                 ${G}(menu)${NC}"
+echo -e "${G}│  ${C}10.]${NC} Reboot System                       ${G}(menu)${NC}"
 echo -e "${G}└─────────────────────────────────────────────────${NC}"
 echo -e ""
 echo -ne " ${WH}Select menu ${C}: ${WH}"; read opt
