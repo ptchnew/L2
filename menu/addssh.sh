@@ -12,6 +12,7 @@ export URL="https://api.telegram.org/bot$KEY/sendMessage"
 IP=$(curl -sS ipv4.icanhazip.com)
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
+domain=$(cat /root/scdomain)
 clear
 echo -e "${W}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}" 
 echo -e "${CYB}${WB}       Add SSH Account        ${NC}"
@@ -79,7 +80,7 @@ TEXT="
 <code>────────────────────</code>
 <b> Premium SSH Account </b>
 <code>────────────────────</code>
-<code>IP/Host      : </code> <code>$IP</code>
+<code>IP/Host      : </code> <code>$domain</code>
 <code>Username     : </code> <code>$Login</code>
 <code>Password     : </code> <code>$Pass</code>
 <code>────────────────────</code>
@@ -87,7 +88,7 @@ TEXT="
 <code>ISP Provider : </code> <code>$ISP</code>
 <code>Location     : </code> <code>$CITY</code>
 <code>────────────────────</code>
-<code>HTTP CUSTOM  : </code><code>$IP:80@$Login:$Pass</code>
+<code>HTTP CUSTOM  : </code><code>$domain:80@$Login:$Pass</code>
 <code>────────────────────</code>
 <code>Payload WS   : </code><code>GET / HTTP/1.1[crlf]Host: [host][crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]</code>
 <code>────────────────────</code>
@@ -105,7 +106,7 @@ echo -e "SSH WebSocket Account"
 echo -e "────────────────────" 
 echo -e "Username     : $Login" 
 echo -e "Password     : $Pass" 
-echo -e "IP/Host      : $IP" 
+echo -e "IP/Host      : $domain" 
 echo -e "Limit Ip     : ${iplimit} IP" 
 echo -e "Provider     : $ISP" 
 echo -e "Location     : $CITY" 
