@@ -79,7 +79,7 @@ clear
 }
 
 res5() {
-wget https://raw.githubusercontent.com/ptchnew/L2/main/update.sh && chmod +x update.sh && ./update.sh
+wget https://raw.githubusercontent.com/ptchnew/L2/main/update.sh && chmod +x update.sh && dos2unix update.sh && ./update.sh
 clear
 }
 
