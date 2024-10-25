@@ -24,7 +24,7 @@ fi
 
 function domain(){
 clear
-until [[ $dn3 =~ ^[a-zA-Z0-9_.-]+$ ]]; do
+until [[ $subdomen =~ ^[a-zA-Z0-9_.-]+$ ]]; do
 read -rp "Input Domain : " -e subdomen
 done
 echo "$subdomen" > /root/scdomain >/dev/null 2>&1
