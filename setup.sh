@@ -22,6 +22,14 @@ echo "OpenVZ is not supported"
 exit 1
 fi
 
+function domain(){
+clear
+until [[ $dn3 =~ ^[a-zA-Z0-9_.-]+$ ]]; do
+read -rp "Input Domain : " -e subdomen
+done
+echo "$subdomen" > /root/scdomain >/dev/null 2>&1
+clear
+}
 function ins-tools(){
 cd
 sysctl -w net.ipv6.conf.all.disable_ipv6=1 >/dev/null 2>&1
@@ -35,6 +43,7 @@ start=$(date +%s)
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 apt install git curl -y >/dev/null 2>&1
 apt install python -y >/dev/null 2>&1
+clear
 }
 
 function ins-package(){
@@ -87,7 +96,7 @@ res6() {
 wget https://raw.githubusercontent.com/ptchnew/L2/main/install/udp-custom.sh && chmod +x udp-custom.sh && bash udp-custom.sh
 clear
 }
-
+clear
 echo -e "${BIBlue}╭══════════════════════════════════════════╮${NC}"
 echo -e "${BIBlue}│ ${BGCOLOR}      PROCESS INSTALLED WEBSOCKET SSH   ${NC}${BIBlue} │${NC}"
 echo -e "${BIBlue}╰══════════════════════════════════════════╯${NC}"
