@@ -1,20 +1,19 @@
 #!/bin/bash
-NC="\e[0m"
-N="\e[0m"
-ANSI1='\033[0;37m'
-ANSI1='\033[46m'
+NC="\033[0m"
 RED="\033[0;31m"
-G="\033[1;97m"
+G="\033[1;96m"
+R="\033[1;91m"
 GREEN='\033[0;32m'
 WH='\033[1;37m'
 M="\e[1;33m"
-COLOR1="${ANSI1}"
-COLBG1="${ANSI2}"
+C='\033[0;31m'
+CYB="\033[46m"
 Left="\033[1;31m≻\033[1;35m≻\033[0;36m≻$NC"
 tram=$( free -h | awk 'NR==2 {print $2}' )
 uram=$( free -h | awk 'NR==2 {print $3}' )
-ISP=$(cat /etc/xray/isp)
-CITY=$(cat /etc/xray/city)
+IP=$(curl -sS ipv4.icanhazip.com)
+ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
+CITY=$(curl -s ipinfo.io/city )
 DAY=$(date +%A)
 DATE=$(date +%m/%d/%Y)
 DATE2=$(date -R | cut -d " " -f -5)
@@ -80,13 +79,13 @@ fi
 
 ssh_ws=$( systemctl status ws-stunnel | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
 if [[ $ssh_ws == "running" ]]; then
-status_ws="${COLOR1}ON${NC}"
+status_ws="${GREEN}ON${NC}"
 else
 status_ws="${RED}OFF${NC}"
 fi
 nginx=$( systemctl status nginx | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
 if [[ $nginx == "running" ]]; then
-status_nginx="${COLOR1}ON${NC}"
+status_nginx="${GREEN}ON${NC}"
 else
 status_nginx="${RED}OFF${NC}"
 systemctl start nginx
@@ -102,7 +101,7 @@ fi
 rm -rf /etc/status
 dropbear_status=$(/etc/init.d/dropbear status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 if [[ $dropbear_status == "running" ]]; then
-   status_beruangjatuh="${COLOR1}ON${NC}"
+   status_beruangjatuh="${GREEN}ON${NC}"
 else
    status_beruangjatuh="${RED}OFF${NC}"
 fi
@@ -152,11 +151,11 @@ res1() {
     systemctl restart badvpn3
 }
 clear
-echo -e "$COLOR1 ┌──────────────────────────────────────────┐${NC}"
-echo -e "$COLOR1 ${NC} ${COLBG1}          ${WH}RESTART SERVICE VPS             ${NC} $COLOR1 $NC"
-echo -e "$COLOR1 └──────────────────────────────────────────┘${NC}"
+echo -e "$G ┌──────────────────────────────────────────┐${NC}"
+echo -e "$G ${NC} ${CYB}          ${WH}RESTART SERVICE VPS             ${NC} $G $NC"
+echo -e "$G └──────────────────────────────────────────┘${NC}"
 echo -e ""
-echo -e "  \033[1;91m Restart All Service... \033[1;37m"
+echo -e "  \033[1;94m Restart All Service... \033[1;37m"
 fun_bar 'res1'
 
 echo -e ""
@@ -168,25 +167,27 @@ clear
 clear && clear && clear
 clear;clear;clear
 neofetch
-echo -e "${G}──────────────────────────────────────────────────${NC} "
-echo -e "${M}    NGINX  ${N} ${status_nginx}  ${N}|${M}  SSHWS  ${N} ${status_ws} ${N}|${M}    DROPBEAR  ${N} ${status_beruangjatuh} ${NC} "
-echo -e "${G}──────────────────────────────────────────────────${NC} "
-echo -e " ${Left} Total Ssh Account Created ${COLOR1}⋍${NC} ${WH}${total_ssh} Account${NC}"
+echo -e "     ISP:  ${R}${ISP}${NC}    CITY: ${R}${CITY}${NC} "
+echo -e "${G}┌─────────────────────────────────────────────────${NC} "
+echo -e "${G}│${M}    NGINX  ${N} ${status_nginx}  ${N}|${M}  SSHWS  ${N} ${status_ws} ${N}|${M}    DROPBEAR  ${N} ${status_beruangjatuh} ${NC} "
+echo -e "${G}└─────────────────────────────────────────────────${NC} "
+echo -e "${G}│${NC} ${Left} Total Ssh Account Created ${COLOR1}⋍${NC} ${WH}${total_ssh} Account${NC}"
 echo -e "${G}┌─────────────────────────────────────────────────${NC}"
-echo -e "${G}│  ${COLOR1}01.]${NC} Create SSH Account   ${G}(menu)${NC}"
-echo -e "${G}│  ${COLOR1}02.]${NC} Renew  SSH Account   ${G}(menu)${NC}"
-echo -e "${G}│  ${COLOR1}03.]${NC} Delete SSH Account   ${G}(menu)${NC}"
-echo -e "${G}│  ${COLOR1}04.]${NC} Online SSH Account   ${G}(menu)${NC}"
-echo -e "${G}│  ${COLOR1}05.]${NC} Limit  SSH Account   ${G}(menu)${NC}"
-echo -e "${G}│  ${COLOR1}06.]${NC} Unlock SSH Account   ${G}(menu)${NC}"
-echo -e "${G}│  ${COLOR1}07.]${NC} Settings Lock SSH    ${G}(menu)${NC}"
+echo -e "${G}│  ${C}01.]${NC} Create SSH Account   ${G}(menu)${NC}"
+echo -e "${G}│  ${C}02.]${NC} Renew  SSH Account   ${G}(menu)${NC}"
+echo -e "${G}│  ${C}03.]${NC} Delete SSH Account   ${G}(menu)${NC}"
+echo -e "${G}│  ${C}04.]${NC} Online SSH Account   ${G}(menu)${NC}"
+echo -e "${G}│  ${C}05.]${NC} Limit  SSH Account   ${G}(menu)${NC}"
+echo -e "${G}│  ${C}06.]${NC} Unlock SSH Account   ${G}(menu)${NC}"
+echo -e "${G}│  ${C}07.]${NC} Settings Lock SSH    ${G}(menu)${NC}"
 echo -e "${G}└─────────────────────────────────────────────────${NC}"
-echo -e "${G}│  ${COLOR1}08.]${NC} Restart Service SSH  ${G}(menu)${NC}"
-echo -e "${G}│  ${COLOR1}09.]${NC} Notifikasi Bot Tele  ${G}(menu)${NC}"
-echo -e "${G}│  ${COLOR1}10.]${NC} Reboot System        ${G}(menu)${NC}"
+echo -e "${G}┌─────────────────────────────────────────────────${NC}"
+echo -e "${G}│  ${C}08.]${NC} Restart Service SSH  ${G}(menu)${NC}"
+echo -e "${G}│  ${C}09.]${NC} Notifikasi Bot Tele  ${G}(menu)${NC}"
+echo -e "${G}│  ${C}10.]${NC} Reboot System        ${G}(menu)${NC}"
 echo -e "${G}└─────────────────────────────────────────────────${NC}"
 echo -e ""
-echo -ne " ${WH}Select menu ${COLOR1}: ${WH}"; read opt
+echo -ne " ${WH}Select menu ${C}: ${WH}"; read opt
 case $opt in
 01 | 1) clear ; addssh ;;
 02 | 2) clear ; renewssh ;;

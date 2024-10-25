@@ -1,9 +1,9 @@
 #!/bin/bash
-CY="\033[36m"       
-CYN="\033[96m"       
-CYB="\033[46m"       
-W="\033[0;37m"  
-WB="\033[1;37m"  
+CY="\033[36m"
+CYN="\033[96m"
+CYB="\033[46m"
+W="\033[0;37m"
+WB="\033[1;37m"
 NC="\033[0m"
 CHATID=""
 KEY=""
@@ -12,6 +12,9 @@ export URL="https://api.telegram.org/bot$KEY/sendMessage"
 IP=$(curl -sS ipv4.icanhazip.com)
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
+if [ ! -e /etc/xray/ssh ]; then
+mkdir -p /etc/xray/ssh
+fi
 clear
 echo -e "${W}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}" 
 echo -e "${CYB}${WB}       Add SSH Account        ${NC}"

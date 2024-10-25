@@ -1,17 +1,14 @@
 #!/bin/bash
 NC="\e[0m"
 RED="\033[0;31m"
-COLOR1="\033[0;37m"
-COLBG1="\033[46m"
 WH='\033[1;37m'
 Y='\e[0;33m'
 G='\e[1;32m'
 WH='\033[1;37m'
-U=$COLOR1
-O=$COLBG1
+U='\033[0;35m'
+O='\E[0;100;36m'
 W=$WH
 N=${NC}
-clear
 clear
 echo -e "${U}┌──────────────────────────────────────────┐${N}"
 echo -e "${U}│ \033[1;37mPlease select a your Choice              ${U}│${N}"
