@@ -1,23 +1,20 @@
 #!/bin/bash
 NC="\033[0m"
 RED="\033[0;31m"
-G="\033[1;96m"
+G="\033[0;35m"
 R="\033[1;91m"
 GREEN='\033[0;32m'
 WH='\033[1;37m'
 M="\e[1;33m"
 C='\033[0;31m'
 CYB="\033[46m"
+BG='\E[0;100;36m'
 Left="\033[1;31m≻\033[1;35m≻\033[0;36m≻$NC"
-tram=$( free -h | awk 'NR==2 {print $2}' )
-uram=$( free -h | awk 'NR==2 {print $3}' )
 IP=$(curl -sS ipv4.icanhazip.com)
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
-DAY=$(date +%A)
-DATE=$(date +%m/%d/%Y)
-DATE2=$(date -R | cut -d " " -f -5)
-MYIP=$(wget -qO- ifconfig.me)
+cpu_load=$(uptime | awk -F'load average:' '{print $2}' | cut -d, -f1)
+cpu_load_percent=$(echo "scale=2; $cpu_load * 100 / $(nproc)" | bc)
 cd
 
 if [ ! -e /etc/xray/ssh ]; then
@@ -167,11 +164,19 @@ clear
 clear && clear && clear
 clear;clear;clear
 neofetch
-echo -e "     ISP:  ${R}${ISP}${NC}    CITY: ${R}${CITY}${NC} "
+echo -e "${G}┌─────────────────────────────────────────────────┐${NC}"
+echo -e "${G}│$NC$NC${BG}               PAINSHOPVPN TUNNEL                $NC${G}│$NC"
+echo -e "${G}└─────────────────────────────────────────────────┘${NC}"
+echo -e "${G}┌─────────────────────────────────────────────────${NC} "
+echo -e "${G}│${NC} ${Left} IP VPS             ${GREEN}⋍${NC} ${R}${IP}${NC}"
+echo -e "${G}│${NC} ${Left} CPU Load           ${GREEN}⋍${NC} ${R}$cpu_load_percent%${NC}"
+echo -e "${G}│${NC} ${Left} ISP Provider       ${GREEN}⋍${NC} ${R}${ISP}${NC}"
+echo -e "${G}│${NC} ${Left} CITY Location      ${GREEN}⋍${NC} ${R}${CITY}${NC}"
+echo -e "${G}│${NC} ${Left} Account Created    ${GREEN}⋍${NC} ${R}${total_ssh}${NC} Account${NC}"
+echo -e "${G}└─────────────────────────────────────────────────${NC} "
 echo -e "${G}┌─────────────────────────────────────────────────${NC} "
 echo -e "${G}│${M}    NGINX  ${N} ${status_nginx}  ${N}|${M}  SSHWS  ${N} ${status_ws} ${N}|${M}    DROPBEAR  ${N} ${status_beruangjatuh} ${NC} "
 echo -e "${G}└─────────────────────────────────────────────────${NC} "
-echo -e "${G}│${NC} ${Left} Total Ssh Account Created ${COLOR1}⋍${NC} ${WH}${total_ssh} Account${NC}"
 echo -e "${G}┌─────────────────────────────────────────────────${NC}"
 echo -e "${G}│  ${C}01.]${NC} Create SSH Account   ${G}(menu)${NC}"
 echo -e "${G}│  ${C}02.]${NC} Renew  SSH Account   ${G}(menu)${NC}"
