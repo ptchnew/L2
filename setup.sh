@@ -134,6 +134,7 @@ rm /root/ssh-vpn.sh >/dev/null 2>&1
 rm /root/insshws.sh >/dev/null 2>&1
 rm /root/ohp.sh >/dev/null 2>&1
 rm /root/update.sh >/dev/null 2>&1
+mkdir -p /etc/xray
 sleep 3
 echo  ""
 cd
