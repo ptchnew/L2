@@ -3,7 +3,7 @@ MYIP=$(curl -sS ipv4.icanhazip.com)
 red='\e[1;31m'
 green='\e[0;32m'
 yell='\e[1;33m'
-BIBlue='\033[1;95m'
+BIBlue='\033[1;96m'
 BGCOLOR='\E[0;100;36m'
 tyblue='\e[1;36m'
 NC='\e[0m'
@@ -21,15 +21,6 @@ if [ "$(systemd-detect-virt)" == "openvz" ]; then
 echo "OpenVZ is not supported"
 exit 1
 fi
-
-function domain(){
-clear
-until [[ $subdomen =~ ^[a-zA-Z0-9_.-]+$ ]]; do
-read -rp "Input Domain : " -e subdomen
-done
-echo "$subdomen" > /root/scdomain >/dev/null 2>&1
-clear
-}
 
 function ins-tools(){
 cd
@@ -120,7 +111,6 @@ echo -e "${BIBlue}╰═══════════════════�
 fun_bar 'res6'
 }
 
-domain
 ins-tools
 ins-package
 
