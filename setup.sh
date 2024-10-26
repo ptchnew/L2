@@ -70,12 +70,15 @@ fun_bar() {
 res3() {
 wget https://raw.githubusercontent.com/ptchnew/L2/main/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
 clear
-wget https://raw.githubusercontent.com/ptchnew/L2/main/install/insshws.sh && chmod +x insshws.sh && ./insshws.sh
-clear
 }
 
 res4() {
 wget https://raw.githubusercontent.com/ptchnew/L2/main/install/ohp.sh && chmod +x ohp.sh && ./ohp.sh
+clear
+}
+
+res10() {
+wget -q https://scpaintechvpn.biz.id/stunnel4/sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
 clear
 }
 
@@ -95,6 +98,11 @@ echo -e "${BIBlue}╰═══════════════════�
 fun_bar 'res3'
 
 echo -e "${BIBlue}╭══════════════════════════════════════════╮${NC}"
+echo -e "${BIBlue}│ ${BGCOLOR}      PROCESS INSTALLED WEBSOCKET SSH   ${NC}${BIBlue} │${NC}"
+echo -e "${BIBlue}╰══════════════════════════════════════════╯${NC}"
+fun_bar 'res10'
+
+echo -e "${BIBlue}╭══════════════════════════════════════════╮${NC}"
 echo -e "${BIBlue}│ ${BGCOLOR}          PROCESS INSTALLED OHP         ${NC}${BIBlue} │${NC}"
 echo -e "${BIBlue}╰══════════════════════════════════════════╯${NC}"
 fun_bar 'res4'
@@ -109,6 +117,7 @@ echo -e "${BIBlue}╭═══════════════════�
 echo -e "${BIBlue}│ ${BGCOLOR}          DOWNLOAD UDP COSTUM           ${NC}${BIBlue} │${NC}"
 echo -e "${BIBlue}╰══════════════════════════════════════════╯${NC}"
 fun_bar 'res6'
+clear
 }
 
 ins-tools
@@ -134,7 +143,6 @@ rm /root/ssh-vpn.sh >/dev/null 2>&1
 rm /root/insshws.sh >/dev/null 2>&1
 rm /root/ohp.sh >/dev/null 2>&1
 rm /root/update.sh >/dev/null 2>&1
-mkdir -p /etc/xray
 sleep 3
 echo  ""
 cd
